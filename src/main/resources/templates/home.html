@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Covid Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+        <a class="navbar-brand" href="/">COVID Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about">About</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <p class="lead">Total cases reported as of today: </p>
+            <h1 class="display-3" th:text="${latestReportedCases}"></h1>
+    </div>
+        </div>
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+                <thead>
+                <th>Country</th>
+                <th>State</th>
+                <th>Total Cases Reported</th>
+                <th>Changes Since Yesterday</th>
+                </thead>
+            </tr>
+            <tr th:each="locationsStat : ${locationStats}">
+                <td th:text="${locationsStat.country}"></td>
+                <td th:text="${locationsStat.state}"></td>
+                <td th:text="${locationsStat.totalReportedCases}">0</td>
+                <td th:text="${locationsStat.diffFromPrevDay}">0</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
